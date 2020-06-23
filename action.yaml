@@ -1,0 +1,25 @@
+name: Magnus Moan Deploy InSo App
+description: Deploy a Plotly Dash Application to InSo App
+inputs:
+  cdf_project:
+    description: The name of your cdf project
+    required: true
+  cdf_credentials:
+    description: CDF API key that's provided to the deployed function
+    required: true
+  cdf_base_url:
+    description: Base url of your cdf project
+    default: https://api.cognitedata.com
+    required: false
+  docker_image:
+    description: Docker image containing application
+    required: true
+  app_name:
+    description: Name of application
+    required: false
+outputs:
+  functionId: # id of output
+    description: The ID of the function output. Use this to do calls against the API!
+runs:
+  using: 'docker'
+  image: Dockerfile
