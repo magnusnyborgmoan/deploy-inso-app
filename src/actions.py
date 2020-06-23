@@ -82,11 +82,12 @@ class InsoAppHandler:
         raise InsoAppTimeout(f"Deletion of {app.name} timed out.")
 
 
-def handle(base_url: str, api_key: str, project: str, image_name: str):
+def handle(base_url: str, api_key: str, project: str, image_name: str, app_name: str = ""):
+    base_name = app_name if app_name else GITHUB_REPOSITORY
     if GITHUB_EVENT_NAME == "push":
-        app_name = f"{GITHUB_REPOSITORY}/{image_name}"
+        app_name = f"{base_name}/{image_name}"
     elif GITHUB_EVENT_NAME == "pull_request":
-        app_name = f"{GITHUB_REPOSITORY}/{image_name}/{GITHUB_HEAD_REF}"
+        app_name = f"{base_name}/{image_name}/{GITHUB_HEAD_REF}"
     else:
         return
 
