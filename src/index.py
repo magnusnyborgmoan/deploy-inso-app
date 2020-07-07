@@ -1,4 +1,4 @@
-from src.actions import handle
+from actions import handle
 import os
 
 
@@ -6,10 +6,10 @@ CDF_PROJECT = os.getenv("INPUT_CDF_PROJECT")
 CDF_CREDENTIALS = os.getenv("INPUT_CDF_CREDENTIALS")
 CDF_BASE_URL = os.getenv("INPUT_CDF_BASE_URL", "https://api.cognitedata.com")
 DOCKER_IMAGE = os.getenv("INPUT_DOCKER_IMAGE")
-APP_NAME = os.environ["INPUT_APP_NAME"]
+APP_NAME = os.getenv("INPUT_APP_NAME")
 GITHUB_EVENT_NAME = os.environ["GITHUB_EVENT_NAME"]
 GITHUB_REF = os.environ["GITHUB_HEAD_REF"]
-
+c
 
 for name, val in [("cdf_project", CDF_PROJECT), ("cdf_credentials", CDF_CREDENTIALS), ("docker_image", DOCKER_IMAGE)]:
     if not val:
