@@ -6,8 +6,8 @@ import requests
 from requests import HTTPError
 
 GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
-GITHUB_HEAD_REF = os.environ["GITHUB_HEAD_REF"]
 GITHUB_EVENT_NAME = os.environ["GITHUB_EVENT_NAME"]
+GITHUB_SHA = os.environ["GITHUB_SHA"]
 
 
 class InsoAppTimeout(Exception):
@@ -84,11 +84,9 @@ class InsoAppHandler:
 
 def handle(base_url: str, api_key: str, project: str, image_name: str, app_name: str = ""):
     base_name = app_name if app_name else GITHUB_REPOSITORY
-    if GITHUB_EVENT_NAME == "push":
-        app_name = f"{base_name}/{image_name}"
-    elif GITHUB_EVENT_NAME == "pull_request":
-        app_name = f"{base_name}/{image_name}/{GITHUB_HEAD_REF}"
-    else:
+    if GITHUB_EVENT_NAME == "pull_request":
+        app_name = f"{base_name}/{GITHUB_SHA[0:8]}"
+    elif GITHUB_EVENT_NAME != "push":
         return
 
     app_name = app_name.replace(":", "/").replace("/", "-")
