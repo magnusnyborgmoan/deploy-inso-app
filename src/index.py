@@ -9,7 +9,7 @@ DOCKER_IMAGE = os.getenv("INPUT_DOCKER_IMAGE")
 APP_NAME = os.getenv("INPUT_APP_NAME")
 GITHUB_EVENT_NAME = os.environ["GITHUB_EVENT_NAME"]
 GITHUB_REF = os.environ["GITHUB_HEAD_REF"]
-c
+
 
 for name, val in [("cdf_project", CDF_PROJECT), ("cdf_credentials", CDF_CREDENTIALS), ("docker_image", DOCKER_IMAGE)]:
     if not val:
